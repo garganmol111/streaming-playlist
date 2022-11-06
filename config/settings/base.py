@@ -233,5 +233,5 @@ TMDB_API_KEY = env("TMDB_API_KEY")
 # TMDB SETTINGS
 tmdb_service = TMDb()
 tmdb_service.api_key = TMDB_API_KEY
-tmdb_service.language = "en"
+tmdb_service.language = "en-US"
 tmdb_service.debug = True
