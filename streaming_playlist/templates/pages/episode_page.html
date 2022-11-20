@@ -4,7 +4,7 @@
 {% block title %} {{ title }} | Streaming Playlist {% endblock %}
 
 {% block content %}
-
+<a href="{% url 'content:get_season' tv_id=tv_id season_number=season_number %}">Back to season</a>
 <div class="page-single movie-single movie_single">
 	<div class="container">
 		<div class="row ipad-width2">
@@ -37,20 +37,11 @@
 						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
 						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Playlist</a>	
 					</div>
-					<div class="movie-rate">
-                        <div class="rate">
-                            <i class="ion-android-star"></i>
-                            <p><span>{{ rating }}</span> /10<br>
-                                <span class="rv">{{ rating_user_count }} Ratings</span>
-                            </p>
-                        </div>
-                    </div>
 					<div class="movie-tabs">
 						<div class="tabs">
 							<ul class="tab-links tabs-mv tabs-series">
-								<li class="active"><a href="#overview">Overview</a></li> 
-								<li><a href="#season"> Seasons</a></li> 
-								<li ><a href="#moviesrelated"> Related Shows</a></li>                        
+								<li class="active"><a href="#overview">Overview</a></li>
+								<li><a href="#cast">  Cast & Crew </a></li>
 							</ul>
 						    <div class="tab-content">
 						        <div id="overview" class="tab active">
@@ -105,57 +96,14 @@
                                                 </p>
                                             </div>
                                             <div class="sb-it">
-                                                <h6>Release Date:</h6>
+                                                <h6>Air Date:</h6>
                                                 <p>{{ release_date }}</p>
                                             </div>
+                                            
                                         </div>
 						            </div>
                                     
 						        </div>
-					       	 	<div id="season" class="tab">
-					       	 		<div class="row">
-                                        <h4>Seasons</h4>
-                                        {% if seasons %}
-                                        {% for season in seasons %}
-					       	 			<div class="mvcast-item">											
-											<div class="cast-it">
-												<div class="cast-left series-it">
-													<img src="{{ season.poster_path }}" alt="">
-													<div>
-														<a href="{% url 'content:get_season' tv_id=tv_id season_number=season.season_number %}">{{ season.name }} ({{ season.year }})</a>
-														<p>{{ season.episode_count }} Episodes</p>
-														<p>{{ season.overview }}</p>
-                                                        <p>{{ season.air_date }}</p>
-													</div>	
-												</div>											
-											</div>	
-										</div>
-                                        {% endfor %}
-                                        {% else %}
-                                        <div>
-                                            <p>No seasons available</p>
-                                        </div>
-                                        {% endif %}
-					       	 		</div>
-					       	 	</div>
-					       	 	<div id="moviesrelated" class="tab">
-					       	 		<div class="row">
-					       	 			<h3>Related Series To</h3>
-					       	 			<h2>{{ title }}</h2>
-					       	 			<div class="topbar-filter">
-											<p>Found <span>{{ related_tv | length }} movies</span> in total</p>
-										</div>
-                                        {% for series in related_tv %}
-										<div class="movie-item-style-2">
-											<img src="{{ series.poster }}" alt="">
-											<div class="mv-item-infor">
-												<h6><a href="{% url 'content:get_tv' content_id=series.id %}">{{ series.title }} <span>({{ series.year }})</span></a></h6>
-												<p class="rate"><i class="ion-android-star"></i><span>{{ series.rating }}</span> /10</p>
-											</div>
-										</div>
-                                        {% endfor %}
-					       	 		</div>
-					       	 	</div>
 						    </div>
 						</div>
 					</div>

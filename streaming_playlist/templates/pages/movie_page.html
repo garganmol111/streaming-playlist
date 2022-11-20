@@ -138,7 +138,7 @@
                                             <div class="movie-item-style-2">
                                                 <img src="{{ movie.poster }}" alt="">
                                                 <div class="mv-item-infor">
-                                                    <h6><a href="#">{{ movie.title }} <span>({{ movie.year }})</span></a></h6>
+                                                    <h6><a href="{% url 'content:get_movie' content_id=movie.id %}">{{ movie.title }} <span>({{ movie.year }})</span></a></h6>
                                                     <p class="rate"><i class="ion-android-star"></i><span>{{ movie.rating }}</span> /10
                                                     </p>
                                                 </div>

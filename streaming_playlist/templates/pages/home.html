@@ -29,7 +29,7 @@
             <img src="{{ tv.poster }}">
             <p class="card-text" style="text-align: center;">{{ tv.title }} ({{ tv.year }})</p>
             <p class="card-text" style="text-align: center;">Rating : {{ tv.rating }}</p>
-            <a href="{% url 'content:get_movie' content_id=tv.id %}" class="stretched-link"></a>
+            <a href="{% url 'content:get_tv' content_id=tv.id %}" class="stretched-link"></a>
         </div>
         {% endfor %}
     </div>
