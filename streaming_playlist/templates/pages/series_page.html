@@ -8,7 +8,7 @@
 <div class="page-single movie-single movie_single">
 	<div class="container">
 		<div class="row ipad-width2">
-			<div class="col-md-4 col-sm-12 col-xs-12">
+			<div class="col-md-2 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
 					<img src="{{ poster }}" alt="">
 					<div class="movie-btn">
@@ -30,7 +30,7 @@
                     </div>
 				</div>
 			</div>
-			<div class="col-md-8 col-sm-12 col-xs-12">
+			<div class="col-md-10 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
 					<h1 class="bd-hd">{{ title }} <span>{{ year }}</span></h1>
 					<div class="social-btn">
@@ -64,21 +64,19 @@
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
 						            		<p>{{ overview }}</p>
                                             <div class="title-hd-sm">
-                                                <h4>cast</h4>
-                                                <a href="#" class="time">Full Cast & Crew <i
-                                                        class="ion-ios-arrow-right"></i></a>
+                                                <h4>Cast</h4>
                                             </div>
                                             <!-- movie cast -->
-                                            <div class="mvcast-item">
-                                                {% for actor in cast %}
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ actor.photo }}" alt="">
-                                                        <a href="#">{{ actor.name }}</a>
+                                            <div class="container-fluid py-2 overflow-auto">
+                                                <div class="d-flex flex-row flex-nowrap">
+                                                    {% for actor in cast %}
+                                                    <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                                        <img src="{{ actor.photo }}">
+                                                        <p class="card-text" style="text-align: center;"><b>{{ actor.name }}</b></p>
+                                                        <p class="card-text" style="text-align: center;">{{ actor.plays_character }}</p>
                                                     </div>
-                                                    <p>{{ actor.plays_character }}</p>
+                                                    {% endfor %}
                                                 </div>
-                                                {% endfor %}
                                             </div>
 						            	</div>
                                         <div class="col-md-4 col-xs-12 col-sm-12">
@@ -119,30 +117,34 @@
                                     
 						        </div>
 					       	 	<div id="season" class="tab">
-					       	 		<div class="row">
-                                        <h4>Seasons</h4>
-                                        {% if seasons %}
-                                        {% for season in seasons %}
-					       	 			<div class="mvcast-item">											
-											<div class="cast-it">
-												<div class="cast-left series-it">
-													<img src="{{ season.poster_path }}" alt="">
-													<div>
-														<a href="{% url 'content:get_season' tv_id=tv_id season_number=season.season_number %}">{{ season.name }} ({{ season.year }})</a>
-														<p>{{ season.episode_count }} Episodes</p>
-														<p>{{ season.overview }}</p>
-                                                        <p>{{ season.air_date }}</p>
-													</div>	
-												</div>											
-											</div>	
-										</div>
-                                        {% endfor %}
-                                        {% else %}
-                                        <div>
-                                            <p>No seasons available</p>
+                                    <br>
+                                    <h4>Seasons</h4>
+                                    {% if seasons %}
+                                    <div class="container-fluid py-2 overflow-auto">
+                                        <div class="card flex-row flex-wrap">
+                                            {% for season in seasons %}
+                                            <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                            
+                                                <div class="card-header border-0">
+                                                    <img src="{{ season.poster_path }}" class="img-fluid" alt="" />
+                                                </div>
+                                                <div class="card-block px-2">
+                                                    <h4 class="card-title">{{ season.name }} ({{ season.year }})</h4>
+                                                    <p class="card-text">{{ season.episode_count }} Episodes</p>
+                                                    <p class="card-text">{{ season.overview }}</p>
+                                                </div>
+                                                <a href="{% url 'content:get_season' tv_id=tv_id season_number=season.season_number %}" class="stretched-link" style="z-index: 5;"></a>
+                                                <div class="w-100"></div>
+                                            </div>
+                                            {% endfor %}
                                         </div>
-                                        {% endif %}
-					       	 		</div>
+                                    </div>
+                                    
+                                    {% else %}
+                                    <div>
+                                        <p>No seasons available</p>
+                                    </div>
+                                    {% endif %}
 					       	 	</div>
 					       	 	<div id="moviesrelated" class="tab">
 					       	 		<div class="row">
@@ -151,15 +153,19 @@
 					       	 			<div class="topbar-filter">
 											<p>Found <span>{{ related_tv | length }} movies</span> in total</p>
 										</div>
-                                        {% for series in related_tv %}
-										<div class="movie-item-style-2">
-											<img src="{{ series.poster }}" alt="">
-											<div class="mv-item-infor">
-												<h6><a href="{% url 'content:get_tv' content_id=series.id %}">{{ series.title }} <span>({{ series.year }})</span></a></h6>
-												<p class="rate"><i class="ion-android-star"></i><span>{{ series.rating }}</span> /10</p>
-											</div>
-										</div>
-                                        {% endfor %}
+                                        <div class="container-fluid py-2 overflow-auto">
+                                            <div class="d-flex flex-row flex-nowrap">
+                                                {% for series in related_tv %}
+                                                <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                                    <img src="{{ series.poster }}">
+                                                    <p class="card-text" style="text-align: center;">{{ series.title }} ({{ series.year }})</p>
+                                                    <p class="card-text" style="text-align: center;"><b>Rating: </b>{{ series.rating }}/10</p>
+                                                    <a href="{% url 'content:get_tv' content_id=series.id %}" class="stretched-link"></a>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        
 					       	 		</div>
 					       	 	</div>
 						    </div>

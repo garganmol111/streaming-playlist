@@ -7,7 +7,7 @@
 <div class="page-single movie-single movie_single">
     <div class="container">
         <div class="row ipad-width2">
-            <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-sm-12 col-xs-12">
                 <div class="movie-img sticky-sb">
                     <img src="{{ poster }}" alt="">
                     <div class="movie-btn">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="col-md-10 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
                     <h1 class="bd-hd">{{ title }} <span>{{ year }}</span></h1>
                     <div class="social-btn">
@@ -73,16 +73,16 @@
                                                         class="ion-ios-arrow-right"></i></a>
                                             </div>
                                             <!-- movie cast -->
-                                            <div class="mvcast-item">
-                                                {% for actor in cast %}
-                                                <div class="cast-it">
-                                                    <div class="cast-left">
-                                                        <img src="{{ actor.photo }}" alt="">
-                                                        <a href="#">{{ actor.name }}</a>
+                                            <div class="container-fluid py-2 overflow-auto">
+                                                <div class="d-flex flex-row flex-nowrap">
+                                                    {% for actor in cast %}
+                                                    <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                                        <img src="{{ actor.photo }}">
+                                                        <p class="card-text" style="text-align: center;"><b>{{ actor.name }}</b></p>
+                                                        <p class="card-text" style="text-align: center;">{{ actor.plays_character }}</p>
                                                     </div>
-                                                    <p>{{ actor.plays_character }}</p>
+                                                    {% endfor %}
                                                 </div>
-                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-xs-12 col-sm-12">
@@ -135,21 +135,22 @@
 
                                     <div id="moviesrelated" class="tab">
                                         <div class="row">
-                                            <h3>Related Movies To</h3>
-                                            <h2>{{ title }}</h2>
+                                            <h3>Related Movies</h3>
                                             <div class="topbar-filter">
                                                 <p>Found <span>{{ related_movies | length }} movies</span> in total</p>
                                             </div>
-                                            {% for movie in related_movies %}
-                                            <div class="movie-item-style-2">
-                                                <img src="{{ movie.poster }}" alt="">
-                                                <div class="mv-item-infor">
-                                                    <h6><a href="{% url 'content:get_movie' content_id=movie.id %}">{{ movie.title }} <span>({{ movie.year }})</span></a></h6>
-                                                    <p class="rate"><i class="ion-android-star"></i><span>{{ movie.rating }}</span> /10
-                                                    </p>
+                                            <div class="container-fluid py-2 overflow-auto">
+                                                <div class="d-flex flex-row flex-nowrap">
+                                                    {% for movie in related_movies %}
+                                                    <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                                        <img src="{{ movie.poster }}">
+                                                        <p class="card-text" style="text-align: center;">{{ movie.title }} ({{ movie.year }})</p>
+                                                        <p class="card-text" style="text-align: center;"><b>Rating: </b>{{ movie.rating }}/10</p>
+                                                        <a href="{% url 'content:get_movie' content_id=movie.id %}" class="stretched-link"></a>
+                                                    </div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
-                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
