@@ -17,6 +17,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("content/", include("streaming_playlist.content.urls", namespace="content")),
     path("search/", include("streaming_playlist.search.urls", namespace="search")),
+    path(
+        "playlist/", include("streaming_playlist.playlist.urls", namespace="playlist")
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

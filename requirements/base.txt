@@ -21,3 +21,4 @@ django-redis==5.2.0  # https://github.com/jazzband/django-redis
 # Extras
 # ------------------------------------------------------------------------------
 tmdbv3api==1.7.7
+django-bootstrap-modal-forms==2.2.0

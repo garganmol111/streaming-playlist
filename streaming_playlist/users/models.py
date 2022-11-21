@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
+from django.db.models import Model, CharField, OneToOneField, JSONField, CASCADE
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -24,3 +24,9 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class Favourites(Model):
+
+    user = OneToOneField(User, on_delete=CASCADE)
+    favourites = JSONField()

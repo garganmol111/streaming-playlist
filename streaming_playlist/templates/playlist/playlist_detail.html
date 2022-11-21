@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Playlists | Streaming Playlist {% endblock %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'playlist:create_playlist' %}" role="button">Create New Playlist</a>
+
+<br>
+<br>
+<h2>{{ playlist.name }}</h2>
+<br>
+<a class="btn btn-primary" href="{{ request.path }}?shuffle=True" role="button">Shuffle Playlist</a>
+<a class="btn btn-danger" href="{% url 'playlist:delete_playlist' pk=playlist.id %}" role="button">Delete Playlist</a>
+<br>
+
+<div class="container-fluid py-2 overflow-auto">
+        {% for content in playlist_content %}
+        <div class="card flex-row flex-wrap">
+            <div class="card-header border-0">
+                <img src="{{ content.poster }}" class="img-fluid" alt="" />
+            </div>
+            <div class="card-block px-2">
+                <h4 class="card-title">{{ forloop.counter }}: {{ content.title }} ({{ content.year }})</h4>
+                <p class="card-text">{{ content.overview }}</p>
+                <p class="card-text"><b>Stream at: </b>{{ content.watch_providers }}</p>
+            </div>
+            <a href="{{ content.redirect_url }}" class="stretched-link" style="z-index: 5;"></a>
+            <div class="w-100"></div>
+        </div>
+        <div class="card-footer w-100 text-muted">
+            <a href="{% url 'playlist:delete_playlist_entry' pk=content.playlist_content_id %}" class="btn btn-danger" style="z-index: 10;">Delete</a>
+        </div>
+        {% empty %}
+        <p><b>PLAYLIST EMPTY</b></p>
+        {% endfor %}
+    
+</div>
+
+
+
+
+{% endblock content %}

@@ -34,8 +34,14 @@
 				<div class="movie-single-ct main-content">
 					<h1 class="bd-hd">{{ title }} <span>{{ year }}</span></h1>
 					<div class="social-btn">
-						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Playlist</a>	
+						<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Create book button -->
+                        <button id="add-entry" class="btn btn-primary" type="button" name="button">Add to Playlist</button>	
 					</div>
 					<div class="movie-rate">
                         <div class="rate">
@@ -164,4 +170,13 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+    
+        $("#add-entry").modalForm({
+            formURL: "{% url 'playlist:add_playlist_entry' %}?type=series&id={{tv_id}}&series={{tv_id}}"
+        });
+    
+    });
+</script>
 {% endblock content %}

@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "bootstrap_modal_forms",
 ]
 
 LOCAL_APPS = [
@@ -68,6 +69,7 @@ LOCAL_APPS = [
     "streaming_playlist.users",
     "streaming_playlist.content",
     "streaming_playlist.search",
+    "streaming_playlist.playlist",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -235,3 +237,5 @@ tmdb_service = TMDb()
 tmdb_service.api_key = TMDB_API_KEY
 tmdb_service.language = "en-US"
 tmdb_service.debug = True
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"

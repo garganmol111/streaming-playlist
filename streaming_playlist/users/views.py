@@ -3,7 +3,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views import View
 from django.views.generic import DetailView, RedirectView, UpdateView
+from .models import Favourites
 
 User = get_user_model()
 
@@ -46,3 +48,11 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
+
+class UserFavouritesView(View):
+    def get(self, request, *args, **kwaargs):
+        pass
+
+    def post(self, request, *args, **kwargs):
+        pass
