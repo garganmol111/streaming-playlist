@@ -69,7 +69,7 @@ class PlaylistDetailView(View):
                     kwargs={"content_id": movie["movie_id"]},
                 )
                 watch_providers = None
-                if episode["watch_providers"] is not None:
+                if movie["watch_providers"] is not None:
                     watch_providers = [
                         i["provider_name"] for i in episode["watch_providers"]
                     ]
