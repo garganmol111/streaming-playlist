@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{ title }} | Streaming Playlist {% endblock %}
+
+{% block content %}
+<a href="{% url 'content:get_tv' content_id=tv_id %}">Back to series</a>
+<div class="page-single movie-single movie_single">
+	<div class="container">
+		<div class="row ipad-width2">
+			<div class="col-md-2 col-sm-12 col-xs-12">
+				<div class="movie-img sticky-sb">
+					<img src="{{ poster }}" alt="">
+					<div class="movie-btn">
+                        <div class="btn-transform transform-vertical">
+                            <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Stream at:</a>
+                            </div>
+                            {% if watch_providers %}
+                            {% for providers in watch_providers %}
+                            <div>
+                                <p>{{ providers.provider_name }}</p>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div>
+                                <p>Not available to stream.</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-12 col-xs-12">
+				<div class="movie-single-ct main-content">
+					<h1 class="bd-hd">{{ title }} <span>{{ year }}</span></h1>
+					<div class="social-btn">
+						<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Create book button -->
+                        <button id="add-entry" class="btn btn-primary" type="button" name="button">Add to Playlist</button>	
+					</div>
+					<div class="movie-tabs">
+						<div class="tabs">
+							<ul class="tab-links tabs-mv tabs-series">
+								<li class="active"><a href="#overview">Overview</a></li>
+								<li><a href="#cast">  Cast & Crew </a></li>
+								<li><a href="#episodes"> Episodes</a></li> 
+							</ul>
+						    <div class="tab-content">
+						        <div id="overview" class="tab active">
+						            <div class="row">
+						            	<div class="col-md-8 col-sm-12 col-xs-12">
+						            		<p>{{ overview }}</p>
+                                            <div class="title-hd-sm">
+                                                <h4>cast</h4>
+                                                <a href="#" class="time">Full Cast & Crew <i
+                                                        class="ion-ios-arrow-right"></i></a>
+                                            </div>
+                                            <!-- movie cast -->
+                                            <div class="container-fluid py-2 overflow-auto">
+                                                <div class="d-flex flex-row flex-nowrap">
+                                                    {% for actor in cast %}
+                                                    <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                                        <img src="{{ actor.photo }}">
+                                                        <p class="card-text" style="text-align: center;"><b>{{ actor.name }}</b></p>
+                                                        <p class="card-text" style="text-align: center;">{{ actor.plays_character }}</p>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+						            	</div>
+                                        <div class="col-md-4 col-xs-12 col-sm-12">
+                                            <div class="sb-it">
+                                                <h6>Director: </h6>
+                                                <p><a href="#">{{ director.name }}</a></p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Writer: </h6>
+                                                <p>
+                                                    {% for writer in writers %}
+                                                    <a href="#">{{ writer.name }}, </a>
+                                                    {% endfor %}
+                                                </p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Stars: </h6>
+                                                <p>
+                                                    {% for star in stars %}
+                                                    <a href="#">{{ star.name }}, </a>
+                                                    {% endfor %}
+                                                </p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Genres:</h6>
+                                                <p>
+                                                    {% for genre in genres %}
+                                                    <a href="#">{{ genre.name }}, </a>
+                                                    {% endfor %}
+                                                </p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Release Date:</h6>
+                                                <p>{{ release_date }}</p>
+                                            </div>
+                                            
+                                        </div>
+						            </div>
+                                    
+						        </div>
+                                
+                                <div id="episodes" class="tab">
+                                    <br>
+                                    <h4>Episodes</h4>
+                                    {% if episodes %}
+                                    <div class="container-fluid py-2 overflow-auto">
+                                        <div class="card flex-row flex-wrap">
+                                            {% for episode in episodes %}
+                                            <div class="card card-body" style="min-width: 20%; margin: 1%;">
+                                            
+                                                <div class="card-header border-0">
+                                                    <img src="{{ episode.poster }}" class="img-fluid" alt="" />
+                                                </div>
+                                                <div class="card-block px-2">
+                                                    <h4 class="card-title">{{ episode.number }} : {{ episode.name }} ({{ episode.air_date }})</h4>
+                                                    <p class="card-text">{{ episode.overview }}</p>
+                                                    <p class="card-text"><b>Rating: </b>{{ episode.rating }}/10 ({{ episode.rating_vote_count }} votes)</p>
+                                                    <p class="card-text"><b>Runtime: </b>{{ episode.runtime }} minutes</p>
+                                                </div>
+                                                <a href="{% url 'content:get_episode' tv_id=tv_id season_number=season_number episode_number=episode.number%}" class="stretched-link" style="z-index: 5;"></a>
+                                                <div class="w-100"></div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    
+                                    {% else %}
+                                    <div>
+                                        <p>No episodes available</p>
+                                    </div>
+                                    {% endif %}
+					       	 	</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    
+        $("#add-entry").modalForm({
+            formURL: "{% url 'playlist:add_playlist_entry' %}?type=season&id={{season_id}}&season={{season_number}}&&series={{tv_id}}"
+        });
+    
+    });
+</script>
+{% endblock content %}

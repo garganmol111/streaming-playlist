@@ -1,1 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %} Streaming Playlist {% endblock %}
+
+{% block content %}
+<h2>Trending Movies</h2>
+
+<div class="container-fluid py-2 overflow-auto">
+    <div class="d-flex flex-row flex-nowrap">
+        {% for movie in trending_movies %}
+        <div class="card card-body" style="min-width: 20%; margin: 1%;">
+            <img src="{{ movie.poster }}">
+            <p class="card-text" style="text-align: center;">{{ movie.title }} ({{ movie.year }})</p>
+            <p class="card-text" style="text-align: center;">Rating : {{ movie.rating }}</p>
+            <a href="{% url 'content:get_movie' content_id=movie.id %}" class="stretched-link"></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<br>
+<br>
+<h2>Trending TV</h2>
+<div class="container-fluid py-2 overflow-auto">
+    <div class="d-flex flex-row flex-nowrap">
+        {% for tv in trending_tv %}
+        <div class="card card-body" style="min-width: 20%; margin: 1%;">
+            <img src="{{ tv.poster }}">
+            <p class="card-text" style="text-align: center;">{{ tv.title }} ({{ tv.year }})</p>
+            <p class="card-text" style="text-align: center;">Rating : {{ tv.rating }}</p>
+            <a href="{% url 'content:get_tv' content_id=tv.id %}" class="stretched-link"></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

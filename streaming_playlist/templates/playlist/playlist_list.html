@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Playlists | Streaming Playlist {% endblock %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'playlist:create_playlist' %}" role="button">Create New Playlist</a>
+
+
+<div class="container-fluid overflow-auto">
+    {% for playlist in playlist_list %}
+    <div class="card card-body">
+        <p class="card-text">{{ forloop.counter }}: {{ playlist.name }}</p>
+        <a href="{% url 'playlist:get_playlist' pk=playlist.id %}" class="stretched-link"></a>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}

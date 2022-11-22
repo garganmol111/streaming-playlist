@@ -272,3 +272,5 @@ tags
 streaming_playlist/media/
 
 .pytest_cache/
+
+.env

@@ -1,4 +1,4 @@
-pytz==2022.2.1  # https://github.com/stub42/pytz
+pytz  # https://github.com/stub42/pytz
 python-slugify==6.1.2  # https://github.com/un33k/python-slugify
 Pillow==9.2.0  # https://github.com/python-pillow/Pillow
 rcssmin==1.1.0  # https://github.com/ndparker/rcssmin
@@ -17,3 +17,8 @@ django-crispy-forms==1.14.0  # https://github.com/django-crispy-forms/django-cri
 crispy-bootstrap5==0.6  # https://github.com/django-crispy-forms/crispy-bootstrap5
 django-compressor==4.1  # https://github.com/django-compressor/django-compressor
 django-redis==5.2.0  # https://github.com/jazzband/django-redis
+
+# Extras
+# ------------------------------------------------------------------------------
+tmdbv3api==1.7.7
+django-bootstrap-modal-forms==2.2.0

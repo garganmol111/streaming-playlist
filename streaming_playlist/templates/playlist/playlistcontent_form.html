@@ -1,0 +1,25 @@
+{% block content %}
+
+
+<div class="modal-header">
+    <h5 class="modal-title">Add to playlist</h5>
+</div>
+<div class="container d-flex justify-content-center mt-5" style="width: 25%;">
+    <div class="col mt-5">
+        <div class="modal-body"></div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table class="table">
+                {{form.as_table}}
+            </table>
+            <div class="container d-flex justify-content-center" style="width: 10%;">
+                <input type="submit" class="btn btn-primary btn-lg" value="Submit"
+                    style="margin-right: 30px; margin-top: 30px;">
+            </div>
+        </form>
+    </div>
+
+</div>
+</div>
+
+{% endblock content %}
