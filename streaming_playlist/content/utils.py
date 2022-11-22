@@ -2,6 +2,35 @@ from tmdbv3api import TV, Configuration, Episode, Movie, Season
 
 
 def get_movie_info(movie_id):
+    """
+    Get Movie Info
+
+    Args:
+        movie_id: Movie ID present in TMDb database
+
+    Returns:
+        Dictionary containing following keys:
+            movie_id            : Movie ID present in TMDb database
+            title               : Movie title
+            year                : Release year
+            release_date        : Release Date
+            poster              : Poster url
+            backdrop            : Backdrop url
+            overview            : Short overview / summary
+            genres              : Genres
+            rating              : Rating out of 10 (source - TMDb)
+            rating_user_count   : No. of users who rated
+            trailer             : youtube link to trailer
+            cast                : List of actors
+            director            : List of directors
+            writers             : List of Writers
+            stars               : List of biggest stars
+            runtime             : Total Runtime
+            keywords            : Search tags/keywords
+            watch_providers     : Where available for streaming
+            related_movies      : List of related movies
+    """
+
     config = Configuration().info()
 
     tmdb_movie = Movie()
@@ -95,6 +124,32 @@ def get_movie_info(movie_id):
 
 
 def get_tv_info(tv_id):
+    """
+    Get TV Series Info
+
+    Args:
+        tv_id: TV ID present in TMDb database
+
+    Returns:
+        Dictionary containing following keys:
+            tv_id               : TV ID present in TMDb database
+            title               : TV Series title
+            year                : Release year
+            release_date        : Release Date
+            poster              : Poster url
+            backdrop            : Backdrop url
+            overview            : Short overview / summary
+            genres              : Genres
+            rating              : Rating out of 10 (source - TMDb)
+            rating_user_count   : No. of users who rated
+            seasons             : List of seasons
+            cast                : List of actors
+            director            : List of directors
+            writers             : List of Writers
+            stars               : List of biggest stars
+            watch_providers     : Where available for streaming
+            related_tv          : List of related tv
+    """
     config = Configuration().info()
 
     tmdb_tv = TV()
