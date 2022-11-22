@@ -1,6 +1,8 @@
-CS699 Project
-Streaming Playlist
-22M0828 (Dhruv), 22M2117 (Anmol)
+## CS699 Project
+
+## Streaming Playlist
+
+## 22M0828 (Dhruv), 22M2117 (Anmol)
 
 ## Description:
 
