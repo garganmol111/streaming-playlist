@@ -2,8 +2,7 @@
 
 ## Streaming Playlist
 
-## 22M0828 (Dhruv), 22M2117 (Anmol)
-
+## 22M2117 (Anmol)
 ## Description:
 
 As movie streaming is becoming more and more popular, we are seeing more and more players entering the market. Due to this, movies and tv shows are divided amongst various streaming platforms like Netflix, Amazon Prime Video, Hotstar etc. Due to this it is getting harder to find which content is available at which streaming platform. Also, as content is being divided amongst these services, there is no way to create a playlist containing content from different platforms.
